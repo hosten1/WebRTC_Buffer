@@ -29,7 +29,6 @@
 /* Begin PBXFileReference section */
 		1B6F5E8F299F6667005E8BC5 /* testBuffer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testBuffer; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B6F5E92299F6667005E8BC5 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		1B6F5E9A299F66A6005E8BC5 /* safe_minmax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safe_minmax.h; sourceTree = "<group>"; };
 		1B6F5E9B299F66A6005E8BC5 /* string_view.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_view.cc; sourceTree = "<group>"; };
 		1B6F5E9C299F66A6005E8BC5 /* zero_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zero_memory.h; sourceTree = "<group>"; };
 		1B6F5E9D299F66A6005E8BC5 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
@@ -94,7 +93,6 @@
 				1B6F5EA5299F66A6005E8BC5 /* byte_buffer.cc */,
 				1B6F5EA0299F66A6005E8BC5 /* byte_buffer.h */,
 				1B6F5E9E299F66A6005E8BC5 /* byte_order.h */,
-				1B6F5E9A299F66A6005E8BC5 /* safe_minmax.h */,
 				1B6F5E9B299F66A6005E8BC5 /* string_view.cc */,
 				1B6F5EA3299F66A6005E8BC5 /* string_view.h */,
 				1B6F5EA1299F66A6005E8BC5 /* type_traits.h */,
