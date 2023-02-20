@@ -625,6 +625,7 @@ enum RelayAttributeType {
   STUN_ATTR_SOURCE_ADDRESS2 = 0x0012,      // Address
   STUN_ATTR_DATA = 0x0013,                 // ByteString
   STUN_ATTR_OPTIONS = 0x8001,              // UInt32
+  STUN_ATTR_XOR_ADDR = 0x0020,              // UInt32
 };
 enum StunAttributeValueType {
   STUN_VALUE_UNKNOWN = 0,
@@ -652,6 +653,8 @@ StunAttributeValueType GetAttributeValueType(int type)  {
       return STUN_VALUE_BYTE_STRING;
     case STUN_ATTR_OPTIONS:
       return STUN_VALUE_UINT32;
+    case STUN_ATTR_XOR_ADDR:
+        return STUN_VALUE_XOR_ADDRESS;
     default:
       return STUN_VALUE_UNKNOWN;
   }
@@ -688,7 +691,7 @@ bool StunAddressAttribute_Read(ByteBufferReader* buf,size_t length) {
     return false;
   if (stun_family == STUN_ADDRESS_IPV4) {
     in_addr v4addr;
-    if (length != SIZE_IP4) {
+    if (length < SIZE_IP4) {
       return false;
     }
     if (!buf->ReadBytes(reinterpret_cast<char*>(&v4addr), sizeof(v4addr))) {
@@ -757,13 +760,39 @@ void ByteBufferTest_TestReadWriteBufferStunMsg() {
 //      std::unique_ptr<StunAttribute> attr(
 //          CreateAttribute(attr_type, attr_length));
       if (!CreateAttribute(attr_type, attr_length)) {
-        // Skip any unknown or malformed attributes.
-        if ((attr_length % 4) != 0) {
-          attr_length += (4 - (attr_length % 4));
-        }
-        if (!buf.Consume(attr_length))
-          return ;
+          // Skip any unknown or malformed attributes.
+          if ((attr_length % 4) != 0) {
+            attr_length += (4 - (attr_length % 4));
+          }
+          if(attr_type == 0x8022){
+              
+              std::string serverName;
+              if (buf.ReadString(&serverName, attr_length)){
+                  printf("SOFTWARE attribute header : %s \n",serverName.c_str());
+              }
+               
+          }else if(attr_type == 0x0008){//MESSAGE-INTEGRITY attribute header
+              // HMAC-SHA1 fingerprint
+              char HMAC_SHA1[20];
+              
+              if (buf.ReadBytes(HMAC_SHA1, 20)){
+                  printf("MESSAGE-INTEGRITY attribute :(HMAC-SHA1 fingerprint attr_length = %d) \n",attr_length);
+              }
+              
+          }else if(attr_type == 0x8028){//FINGERPRINT attribute header
+              // CRC32 fingerprint
+              char CRC32_fingerprint[4];
+              if (buf.ReadBytes(CRC32_fingerprint, 4)){
+                  printf("MESSAGE-INTEGRITY attribute :(HMAC-SHA1 fingerprint attr_length = %d) \n",attr_length);
+              }
+              
+          }else{
+              if (!buf.Consume(attr_length))
+                return ;
+          }
+        
       } else {
+          // 解析xor地址
         if (!StunAddressAttribute_Read(&buf,length))
           return ;
 //        attrs_.push_back(std::move(attr));
