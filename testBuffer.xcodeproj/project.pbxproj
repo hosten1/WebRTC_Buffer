@@ -12,6 +12,7 @@
 		1B6F5EA7299F66A6005E8BC5 /* zero_memory.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5E9F299F66A6005E8BC5 /* zero_memory.cc */; };
 		1B6F5EA8299F66A7005E8BC5 /* byte_buffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5EA5299F66A6005E8BC5 /* byte_buffer.cc */; };
 		1B6F5EB0299F7228005E8BC5 /* bit_buffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5EAE299F7228005E8BC5 /* bit_buffer.cc */; };
+		1BD6D06229A46B0300CA6F6E /* checks.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6D06129A46B0300CA6F6E /* checks.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,9 @@
 		1B6F5EAD299F69FF005E8BC5 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		1B6F5EAE299F7228005E8BC5 /* bit_buffer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bit_buffer.cc; sourceTree = "<group>"; };
 		1B6F5EAF299F7228005E8BC5 /* bit_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_buffer.h; sourceTree = "<group>"; };
+		1BD6D06029A46B0300CA6F6E /* checks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checks.h; sourceTree = "<group>"; };
+		1BD6D06129A46B0300CA6F6E /* checks.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = checks.cc; sourceTree = "<group>"; };
+		1BD6D06329A46BE000CA6F6E /* safe_compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safe_compare.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 		1B6F5E91299F6667005E8BC5 /* testBuffer */ = {
 			isa = PBXGroup;
 			children = (
+				1BD6D05F29A46B0300CA6F6E /* checks */,
 				1B6F5E99299F66A6005E8BC5 /* buffer */,
 				1B6F5E92299F6667005E8BC5 /* main.mm */,
 			);
@@ -108,6 +113,16 @@
 				1B6F5EAD299F69FF005E8BC5 /* libstdc++.6.0.9.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1BD6D05F29A46B0300CA6F6E /* checks */ = {
+			isa = PBXGroup;
+			children = (
+				1BD6D06329A46BE000CA6F6E /* safe_compare.h */,
+				1BD6D06029A46B0300CA6F6E /* checks.h */,
+				1BD6D06129A46B0300CA6F6E /* checks.cc */,
+			);
+			path = checks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BD6D06229A46B0300CA6F6E /* checks.cc in Sources */,
 				1B6F5E93299F6667005E8BC5 /* main.mm in Sources */,
 				1B6F5EA6299F66A6005E8BC5 /* string_view.cc in Sources */,
 				1B6F5EA7299F66A6005E8BC5 /* zero_memory.cc in Sources */,
@@ -290,6 +306,7 @@
 		1B6F5E97299F6667005E8BC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -298,6 +315,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -306,10 +324,12 @@
 		1B6F5E98299F6667005E8BC5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = WEBRTC_POSIX;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

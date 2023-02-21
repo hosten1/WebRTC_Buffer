@@ -678,6 +678,7 @@ uint32_t ReduceTransactionId(const std::string& transaction_id) {
   return result;
 }
 bool StunAddressAttribute_Read(ByteBufferReader* buf,size_t length) {
+    //XOR-MAPPED-ADDRESS和MAPPED-ADDRESS仅在传输地址的编码方面不同。
   uint8_t dummy;
   if (!buf->ReadUInt8(&dummy))
     return false;
@@ -765,7 +766,7 @@ void ByteBufferTest_TestReadWriteBufferStunMsg() {
             attr_length += (4 - (attr_length % 4));
           }
           if(attr_type == 0x8022){
-              
+              //
               std::string serverName;
               if (buf.ReadString(&serverName, attr_length)){
                   printf("SOFTWARE attribute header : %s \n",serverName.c_str());

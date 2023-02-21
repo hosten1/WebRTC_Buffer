@@ -19,7 +19,7 @@
 #include <utility>
 
 #include "array_view.h"
-//#include "checks.h"
+#include "checks.h"
 #include "type_traits.h"
 #include "zero_memory.h"
 
@@ -66,7 +66,7 @@ class BufferT {
 
   // An empty BufferT.
   BufferT() : size_(0), capacity_(0), data_(nullptr) {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
   }
 
   // Disable copy construction and copy assignment, since copying a buffer is
@@ -78,7 +78,7 @@ class BufferT {
       : size_(buf.size()),
         capacity_(buf.capacity()),
         data_(std::move(buf.data_)) {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     buf.OnMovedFrom();
   }
 
@@ -89,7 +89,7 @@ class BufferT {
       : size_(size),
         capacity_(std::max(size, capacity)),
         data_(capacity_ > 0 ? new T[capacity_] : nullptr) {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
   }
 
   // Construct a buffer and copy the specified number of elements into it.
@@ -122,7 +122,7 @@ class BufferT {
             typename std::enable_if<
                 internal::BufferCompat<T, U>::value>::type* = nullptr>
   const U* data() const {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     return reinterpret_cast<U*>(data_.get());
   }
 
@@ -130,27 +130,27 @@ class BufferT {
             typename std::enable_if<
                 internal::BufferCompat<T, U>::value>::type* = nullptr>
   U* data() {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     return reinterpret_cast<U*>(data_.get());
   }
 
   bool empty() const {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     return size_ == 0;
   }
 
   size_t size() const {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     return size_;
   }
 
   size_t capacity() const {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     return capacity_;
   }
 
   BufferT& operator=(BufferT&& buf) {
-//    RTC_DCHECK(buf.IsConsistent());
+    RTC_DCHECK(buf.IsConsistent());
     MaybeZeroCompleteBuffer();
     size_ = buf.size_;
     capacity_ = buf.capacity_;
@@ -162,7 +162,7 @@ class BufferT {
   }
 
   bool operator==(const BufferT& buf) const {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     if (size_ != buf.size_) {
       return false;
     }
@@ -181,12 +181,12 @@ class BufferT {
   bool operator!=(const BufferT& buf) const { return !(*this == buf); }
 
   T& operator[](size_t index) {
-//    RTC_DCHECK_LT(index, size_);
+    RTC_DCHECK_LT(index, size_);
     return data()[index];
   }
 
   T operator[](size_t index) const {
-//    RTC_DCHECK_LT(index, size_);
+    RTC_DCHECK_LT(index, size_);
     return data()[index];
   }
 
@@ -203,7 +203,7 @@ class BufferT {
             typename std::enable_if<
                 internal::BufferCompat<T, U>::value>::type* = nullptr>
   void SetData(const U* data, size_t size) {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     const size_t old_size = size_;
     size_ = 0;
     AppendData(data, size);
@@ -241,7 +241,7 @@ class BufferT {
             typename std::enable_if<
                 internal::BufferCompat<T, U>::value>::type* = nullptr>
   size_t SetData(size_t max_elements, F&& setter) {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     const size_t old_size = size_;
     size_ = 0;
     const size_t written = AppendData<U>(max_elements, std::forward<F>(setter));
@@ -257,13 +257,13 @@ class BufferT {
             typename std::enable_if<
                 internal::BufferCompat<T, U>::value>::type* = nullptr>
   void AppendData(const U* data, size_t size) {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     const size_t new_size = size_ + size;
     EnsureCapacityWithHeadroom(new_size, true);
     static_assert(sizeof(T) == sizeof(U), "");
     std::memcpy(data_.get() + size_, data, size * sizeof(U));
     size_ = new_size;
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
   }
 
   template <typename U,
@@ -302,15 +302,15 @@ class BufferT {
             typename std::enable_if<
                 internal::BufferCompat<T, U>::value>::type* = nullptr>
   size_t AppendData(size_t max_elements, F&& setter) {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     const size_t old_size = size_;
     SetSize(old_size + max_elements);
     U* base_ptr = data<U>() + old_size;
     size_t written_elements = setter(rtc::ArrayView<U>(base_ptr, max_elements));
 
-//    RTC_CHECK_LE(written_elements, max_elements);
+    RTC_CHECK_LE(written_elements, max_elements);
     size_ = old_size + written_elements;
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     return written_elements;
   }
 
@@ -341,7 +341,7 @@ class BufferT {
   void Clear() {
     MaybeZeroCompleteBuffer();
     size_ = 0;
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
   }
 
   // Swaps two buffers. Also works for buffers that have been moved from.
@@ -354,7 +354,7 @@ class BufferT {
 
  private:
   void EnsureCapacityWithHeadroom(size_t capacity, bool extra_headroom) {
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
     if (capacity <= capacity_)
       return;
 
@@ -372,7 +372,7 @@ class BufferT {
     MaybeZeroCompleteBuffer();
     data_ = std::move(new_data);
     capacity_ = new_capacity;
-//    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK(IsConsistent());
   }
 
   // Zero the complete buffer if template argument "ZeroOnFree" is true.
@@ -387,8 +387,8 @@ class BufferT {
 
   // Zero the first "count" elements of unused capacity.
   void ZeroTrailingData(size_t count) {
-//    RTC_DCHECK(IsConsistent());
-//    RTC_DCHECK_LE(count, capacity_ - size_);
+    RTC_DCHECK(IsConsistent());
+    RTC_DCHECK_LE(count, capacity_ - size_);
     ExplicitZeroMemory(data_.get() + size_, count * sizeof(T));
   }
 
@@ -403,7 +403,7 @@ class BufferT {
   // Called when *this has been moved from. Conceptually it's a no-op, but we
   // can mutate the state slightly to help subsequent sanity checks catch bugs.
   void OnMovedFrom() {
-//    RTC_DCHECK(!data_);  // Our heap block should have been stolen.
+    RTC_DCHECK(!data_);  // Our heap block should have been stolen.
 #if RTC_DCHECK_IS_ON
     // Ensure that *this is always inconsistent, to provoke bugs.
     size_ = 1;

@@ -12,19 +12,20 @@
 
 #include <algorithm>
 #include <limits>
+#include "checks.h"
 
 namespace {
 
 // Returns the lowest (right-most) |bit_count| bits in |byte|.
 uint8_t LowestBits(uint8_t byte, size_t bit_count) {
-//  RTC_DCHECK_LE(bit_count, 8);
+  RTC_DCHECK_LE(bit_count, 8);
   return byte & ((1 << bit_count) - 1);
 }
 
 // Returns the highest (left-most) |bit_count| bits in |byte|, shifted to the
 // lowest bits (to the right).
 uint8_t HighestBits(uint8_t byte, size_t bit_count) {
-//  RTC_DCHECK_LE(bit_count, 8);
+  RTC_DCHECK_LE(bit_count, 8);
   uint8_t shift = 8 - static_cast<uint8_t>(bit_count);
   uint8_t mask = 0xFF << shift;
   return (byte & mask) >> shift;
@@ -42,9 +43,9 @@ uint8_t WritePartialByte(uint8_t source,
                          size_t source_bit_count,
                          uint8_t target,
                          size_t target_bit_offset) {
-//  RTC_DCHECK(target_bit_offset < 8);
-//  RTC_DCHECK(source_bit_count < 9);
-//  RTC_DCHECK(source_bit_count <= (8 - target_bit_offset));
+  RTC_DCHECK(target_bit_offset < 8);
+  RTC_DCHECK(source_bit_count < 9);
+  RTC_DCHECK(source_bit_count <= (8 - target_bit_offset));
   // Generate a mask for just the bits we're going to overwrite, so:
   uint8_t mask =
       // The number of bits we want, in the most significant bits...
@@ -73,8 +74,8 @@ namespace rtc {
 
 BitBuffer::BitBuffer(const uint8_t* bytes, size_t byte_count)
     : bytes_(bytes), byte_count_(byte_count), byte_offset_(), bit_offset_() {
-//  RTC_DCHECK(static_cast<uint64_t>(byte_count_) <=
-//             std::numeric_limits<uint32_t>::max());
+  RTC_DCHECK(static_cast<uint64_t>(byte_count_) <=
+             std::numeric_limits<uint32_t>::max());
 }
 
 uint64_t BitBuffer::RemainingBitCount() const {
@@ -86,7 +87,7 @@ bool BitBuffer::ReadUInt8(uint8_t* val) {
   if (!ReadBits(&bit_val, sizeof(uint8_t) * 8)) {
     return false;
   }
-//  RTC_DCHECK(bit_val <= std::numeric_limits<uint8_t>::max());
+  RTC_DCHECK(bit_val <= std::numeric_limits<uint8_t>::max());
   *val = static_cast<uint8_t>(bit_val);
   return true;
 }
@@ -96,7 +97,7 @@ bool BitBuffer::ReadUInt16(uint16_t* val) {
   if (!ReadBits(&bit_val, sizeof(uint16_t) * 8)) {
     return false;
   }
-//  RTC_DCHECK(bit_val <= std::numeric_limits<uint16_t>::max());
+  RTC_DCHECK(bit_val <= std::numeric_limits<uint16_t>::max());
   *val = static_cast<uint16_t>(bit_val);
   return true;
 }
@@ -109,7 +110,7 @@ bool BitBuffer::PeekBits(uint32_t* val, size_t bit_count) {
   // TODO(nisse): Could allow bit_count == 0 and always return success. But
   // current code reads one byte beyond end of buffer in the case that
   // RemainingBitCount() == 0 and bit_count == 0.
-//  RTC_DCHECK(bit_count > 0);
+  RTC_DCHECK(bit_count > 0);
   if (!val || bit_count > RemainingBitCount() || bit_count > 32) {
     return false;
   }
