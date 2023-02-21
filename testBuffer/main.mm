@@ -12,6 +12,10 @@
 
 #import "bit_buffer.h"
 
+#include "string_builder.h"
+#include "checks.h"
+
+
 #include <stddef.h>
 #include <limits>
 
@@ -295,6 +299,26 @@ char (&ArraySizeHelper(T (&array)[N]))[N];
 
 #define arraysize(array) (sizeof(ArraySizeHelper(array)))
 using namespace rtc;
+
+
+void StringBuilder_Release() {
+  StringBuilder sb;
+  std::string str =
+      "This string has to be of a moderate length, or we might "
+      "run into problems with small object optimizations.";
+    if (!(sizeof(str) <= str.size())) {
+        printf("========> StringBuilder_Release <=========");
+        assert(false);
+    }
+  sb << str;
+  EXPECT_EQ(str, sb.str());
+  sb.AppendFormat(" 这是一段中文测试 %d",342);
+  const char* original_buffer = sb.str().c_str();
+  std::string moved = sb.Release();
+  EXPECT_TRUE(sb.str().empty());
+  EXPECT_EQ(str, moved);
+  EXPECT_EQ(original_buffer, moved.c_str());
+}
 
 void BitBufferTest_ConsumeBits() {
   const uint8_t bytes[64] = {0};
@@ -923,6 +947,7 @@ void ByteBufferTest_TestReadWriteBuffer() {
 }
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        StringBuilder_Release();
 //        ByteBufferTest_TestReadWriteBuffer();
         ByteBufferTest_TestReadWriteBufferStunMsg();
 //        BitBufferTest_ConsumeBits();
