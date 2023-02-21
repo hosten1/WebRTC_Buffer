@@ -16,6 +16,7 @@
 		1BD18A0529A4A58D0017C00A /* string_builder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD189FF29A4A58D0017C00A /* string_builder.cc */; };
 		1BD18A0C29A4A6BC0017C00A /* string_to_number.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD18A0929A4A6BC0017C00A /* string_to_number.cc */; };
 		1BD18A0D29A4A6BC0017C00A /* string_encode.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD18A0B29A4A6BC0017C00A /* string_encode.cc */; };
+		1BD18A1529A4B89E0017C00A /* ip_address.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD18A1329A4B89E0017C00A /* ip_address.cc */; };
 		1BD6D06229A46B0300CA6F6E /* checks.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6D06129A46B0300CA6F6E /* checks.cc */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,8 @@
 		1BD18A0A29A4A6BC0017C00A /* string_encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_encode.h; sourceTree = "<group>"; };
 		1BD18A0B29A4A6BC0017C00A /* string_encode.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_encode.cc; sourceTree = "<group>"; };
 		1BD18A0E29A4ABA90017C00A /* safe_minmax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safe_minmax.h; sourceTree = "<group>"; };
+		1BD18A1329A4B89E0017C00A /* ip_address.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ip_address.cc; sourceTree = "<group>"; };
+		1BD18A1429A4B89E0017C00A /* ip_address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip_address.h; sourceTree = "<group>"; };
 		1BD6D06029A46B0300CA6F6E /* checks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checks.h; sourceTree = "<group>"; };
 		1BD6D06129A46B0300CA6F6E /* checks.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = checks.cc; sourceTree = "<group>"; };
 		1BD6D06329A46BE000CA6F6E /* safe_compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safe_compare.h; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 		1B6F5E91299F6667005E8BC5 /* testBuffer */ = {
 			isa = PBXGroup;
 			children = (
+				1BD18A1229A4B89E0017C00A /* socket */,
 				1BD189F729A4A58D0017C00A /* strings */,
 				1BD6D05F29A46B0300CA6F6E /* checks */,
 				1B6F5E99299F66A6005E8BC5 /* buffer */,
@@ -143,6 +147,15 @@
 				1BD189F829A4A58D0017C00A /* string_utils.h */,
 			);
 			path = strings;
+			sourceTree = "<group>";
+		};
+		1BD18A1229A4B89E0017C00A /* socket */ = {
+			isa = PBXGroup;
+			children = (
+				1BD18A1329A4B89E0017C00A /* ip_address.cc */,
+				1BD18A1429A4B89E0017C00A /* ip_address.h */,
+			);
+			path = socket;
 			sourceTree = "<group>";
 		};
 		1BD6D05F29A46B0300CA6F6E /* checks */ = {
@@ -213,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BD6D06229A46B0300CA6F6E /* checks.cc in Sources */,
+				1BD18A1529A4B89E0017C00A /* ip_address.cc in Sources */,
 				1B6F5E93299F6667005E8BC5 /* main.mm in Sources */,
 				1BD18A0D29A4A6BC0017C00A /* string_encode.cc in Sources */,
 				1B6F5EA6299F66A6005E8BC5 /* string_view.cc in Sources */,

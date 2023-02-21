@@ -15,6 +15,7 @@
 #include "string_builder.h"
 #include "checks.h"
 
+#include "ip_address.h"
 
 #include <stddef.h>
 #include <limits>
@@ -315,7 +316,7 @@ void StringBuilder_Release() {
   sb.AppendFormat(" 这是一段中文测试 %d",342);
   const char* original_buffer = sb.str().c_str();
   std::string moved = sb.Release();
-  EXPECT_TRUE(sb.str().empty());
+       EXPECT_TRUE(sb.str().empty());
   EXPECT_EQ(str, moved);
   EXPECT_EQ(original_buffer, moved.c_str());
 }
@@ -701,7 +702,7 @@ uint32_t ReduceTransactionId(const std::string& transaction_id) {
   }
   return result;
 }
-bool StunAddressAttribute_Read(ByteBufferReader* buf,size_t length) {
+bool StunAddressAttribute_Read(ByteBufferReader* buf,size_t length,std::string reduced_transaction_id) {
     //XOR-MAPPED-ADDRESS和MAPPED-ADDRESS仅在传输地址的编码方面不同。
   uint8_t dummy;
   if (!buf->ReadUInt8(&dummy))
@@ -712,8 +713,10 @@ bool StunAddressAttribute_Read(ByteBufferReader* buf,size_t length) {
     return false;
   }
   uint16_t port;
-  if (!buf->ReadUInt16(&port))
-    return false;
+    if (!buf->ReadUInt16(&port)){
+        return false;
+    }
+    port ^= (kStunMagicCookie >> 16);
   if (stun_family == STUN_ADDRESS_IPV4) {
     in_addr v4addr;
     if (length < SIZE_IP4) {
@@ -722,27 +725,42 @@ bool StunAddressAttribute_Read(ByteBufferReader* buf,size_t length) {
     if (!buf->ReadBytes(reinterpret_cast<char*>(&v4addr), sizeof(v4addr))) {
       return false;
     }
-    char *z = inet_ntoa(v4addr); /* cast x as a struct in_addr */
-        
-    printf("ipv4 = %s \n", z);
+      v4addr.s_addr =
+          (v4addr.s_addr ^ rtc::HostToNetwork32(kStunMagicCookie));
+      IPAddress ipV4Add(v4addr);
+      printf("ipv4 = %s:%hu \n", ipV4Add.ToString().c_str(),port);
   } else if (stun_family == STUN_ADDRESS_IPV6) {
     in6_addr v6addr;
-    if (length != SIZE_IP6) {
-      return false;
-    }
+//    if (length != SIZE_IP6) {
+//      return false;
+//    }
     if (!buf->ReadBytes(reinterpret_cast<char*>(&v6addr), sizeof(v6addr))) {
       return false;
     }
-//      char *z = inet_ntoa(v6addr); /* cast x as a struct in_addr */
-//
-//      printf("z = %s\n", z);
+      const std::string& transaction_id = reduced_transaction_id;
+      if (transaction_id.length() == kStunTransactionIdLength) {
+        uint32_t transactionid_as_ints[3];
+        memcpy(&transactionid_as_ints[0], transaction_id.c_str(),
+               transaction_id.length());
+        uint32_t* ip_as_ints = reinterpret_cast<uint32_t*>(&v6addr.s6_addr);
+        // Transaction ID is in network byte order, but magic cookie
+        // is stored in host byte order.
+        ip_as_ints[0] =
+            (ip_as_ints[0] ^ rtc::HostToNetwork32(kStunMagicCookie));
+        ip_as_ints[1] = (ip_as_ints[1] ^ transactionid_as_ints[0]);
+        ip_as_ints[2] = (ip_as_ints[2] ^ transactionid_as_ints[1]);
+        ip_as_ints[3] = (ip_as_ints[3] ^ transactionid_as_ints[2]);
+      }
+      IPAddress ipV6Add(v6addr);
+      printf("ipv6 = [%s]:%hu \n", ipV6Add.ToString().c_str(),port);
   } else {
     return false;
   }
   return true;
 }
 void ByteBufferTest_TestReadWriteBufferStunMsg() {
-    rtc::ByteBufferReader buf(reinterpret_cast<const char*>(kRfc5769SampleResponse), sizeof(kRfc5769SampleResponse));
+    // kRfc5769SampleResponseIPv6 kRfc5769SampleResponse
+    rtc::ByteBufferReader buf(reinterpret_cast<const char*>(kRfc5769SampleResponseIPv6), sizeof(kRfc5769SampleResponseIPv6));
     uint16_t type = 0;
     if (!buf.ReadUInt16(&type))
       return;
@@ -818,7 +836,7 @@ void ByteBufferTest_TestReadWriteBufferStunMsg() {
         
       } else {
           // 解析xor地址
-        if (!StunAddressAttribute_Read(&buf,length))
+        if (!StunAddressAttribute_Read(&buf,length,transaction_id))
           return ;
 //        attrs_.push_back(std::move(attr));
       }
