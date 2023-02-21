@@ -765,6 +765,10 @@ void ByteBufferTest_TestReadWriteBufferStunMsg() {
     if (!buf.ReadUInt16(&type))
       return;
     int version =  type & 0x8000;
+    if (version) {//这里如果不是0就说明不是stun消息
+        assert(false);
+        return;
+    }
     uint16_t length = 0;
     if (!buf.ReadUInt16(&length))
       return ;
@@ -790,7 +794,7 @@ void ByteBufferTest_TestReadWriteBufferStunMsg() {
       transaction_id.insert(0, magic_cookie);
     }
     uint32_t reduced_transaction_id_ = ReduceTransactionId(transaction_id);
-    printf("===》 magicId: %ul reduced_transaction_id_:%ul \n",magicId,reduced_transaction_id_);
+    printf("===》 magicId: %ul reduced_transaction_id_:%ul version = %d \n",magicId,reduced_transaction_id_,version);
     EXPECT_EQ(length, buf.Length());
     size_t rest = buf.Length() - length;
     while (buf.Length() > rest) {
