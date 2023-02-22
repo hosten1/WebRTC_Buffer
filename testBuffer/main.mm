@@ -491,7 +491,8 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        StringBuilder_Release();
 //        ByteBufferTest_TestReadWriteBuffer();
-        rtc::ByteBufferTest_TestReadWriteBufferStunMsg();
+         test_sendBindMsg();
+//        rtc::ByteBufferTest_TestReadWriteBufferStunMsg();
         
         
         

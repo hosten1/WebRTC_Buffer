@@ -56,7 +56,7 @@ void  StunTest_ValidateMessageIntegrity();
 void  StunTest_AddMessageIntegrity();
 void  StunTest_ValidateFingerprint();
 void  StunTest_AddFingerprint( ) ;
-
+void test_sendBindMsg();
 }
 
 #endif /* testStun_h */
