@@ -293,10 +293,10 @@ bool StunMessage::ValidateMessageIntegrity(const char* data,
     //     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     rtc::SetBE16(temp_data.get() + 2, static_cast<uint16_t>(new_adjusted_len));
   }
-
   unsigned char hmac[kStunMessageIntegritySize];
-  size_t ret = 0;
-  hmac_sha1((unsigned char *)password.c_str(), password.size(), (unsigned char *)temp_data.get(), mi_pos,hmac, &ret);
+  size_t ret = sizeof(hmac);
+    //hmac_sha1加密后数据 = b103f699ef12c04ab6f0cb155ac2f12ef84adf22
+  hmac_sha1((unsigned char *)password.c_str(), password.size(), (unsigned char *)temp_data.get(), mi_pos,hmac,&ret);
 //      rtc::ComputeHmac(rtc::DIGEST_SHA_1, password.c_str(), password.size(),
 //                       temp_data.get(), mi_pos, hmac, sizeof(hmac));
     RTC_DCHECK(ret == sizeof(hmac));
@@ -329,7 +329,7 @@ bool StunMessage::AddMessageIntegrity(const char* key, size_t keylen) {
       buf.Length() - kStunAttributeHeaderSize - msg_integrity_attr->length());
     
     unsigned char hmac[kStunMessageIntegritySize];
-    size_t ret = 0;
+    size_t ret = sizeof(hmac);
     hmac_sha1((unsigned char *)key,keylen, (unsigned char *)buf.Data(), msg_len_for_hmac,hmac, &ret);
 //  char hmac[kStunMessageIntegritySize];
 //  size_t ret = rtc::ComputeHmac(rtc::DIGEST_SHA_1, key, keylen, buf.Data(),
@@ -1072,10 +1072,13 @@ bool ComputeStunCredentialHash(const std::string& username,
   input += realm;
   input += ':';
   input += password;
-  
-    static  int const kMaxSize = 64;
-    unsigned char digest[kMaxSize];
-  MD5((const unsigned char *)input.c_str(), input.size(), digest);
+  /*
+   MD5加密文本：lym:example.org:123456
+   turnKey = 8812c1afb0e203aae88c996e30ac7db6
+   hmac_sha1加密后数据 = b103f699ef12c04ab6f0cb155ac2f12ef84adf22
+   */
+    unsigned char digest[MD5_DIGEST_LENGTH];
+    MD5((const unsigned char *)input.c_str(), input.size(), digest);
 
 //  size_t size = rtc::ComputeDigest(rtc::DIGEST_MD5, input.c_str(), input.size(),
 //                                   digest, sizeof(digest));

@@ -491,7 +491,31 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         StringBuilder_Release();
 //        ByteBufferTest_TestReadWriteBuffer();
-        rtc::ByteBufferTest_TestReadWriteBufferStunMsg();
+//        rtc::ByteBufferTest_TestReadWriteBufferStunMsg();
+        
+        
+        
+        // Read the RFC5389 fields from the RFC5769 sample STUN request.
+//        rtc::StunTest_ReadRfc5769RequestMessage() ;
+//        // Read the RFC5389 fields from the RFC5769 sample STUN response.
+//        rtc::StunTest_ReadRfc5769ResponseMessage();
+//        // Read the RFC5389 fields from the RFC5769 sample STUN response for IPv6.
+//        rtc::StunTest_ReadRfc5769ResponseMessageIPv6() ;
+//
+//        // Read the RFC5389 fields from the RFC5769 sample STUN response with auth.
+//        rtc::StunTest_ReadRfc5769RequestMessageLongTermAuth();
+//
+//        // The RFC3489 packet in this test is the same as
+//        // kStunMessageWithIPv4MappedAddress, but with a different value where the
+//        // magic cookie was.
+//        rtc::StunTest_ReadLegacyMessage();
+        
+        
+        rtc::StunTest_ValidateMessageIntegrity();
+        rtc::StunTest_AddMessageIntegrity();
+        rtc::StunTest_ValidateFingerprint();
+        rtc::StunTest_AddFingerprint( ) ;
+        
 //        BitBufferTest_ConsumeBits();
 //        BitBufferTest_ReadBytesAligned();
 //        BitBufferTest_ReadBytesOffset4();
