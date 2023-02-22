@@ -1072,13 +1072,8 @@ bool ComputeStunCredentialHash(const std::string& username,
   input += realm;
   input += ':';
   input += password;
-  /*
-   MD5加密文本：lym:example.org:123456
-   turnKey = 8812c1afb0e203aae88c996e30ac7db6
-   hmac_sha1加密后数据 = b103f699ef12c04ab6f0cb155ac2f12ef84adf22
-   */
-    unsigned char digest[MD5_DIGEST_LENGTH];
-    MD5((const unsigned char *)input.c_str(), input.size(), digest);
+  unsigned char digest[MD5_DIGEST_LENGTH];
+  MD5((const unsigned char *)input.c_str(), input.size(), digest);
 
 //  size_t size = rtc::ComputeDigest(rtc::DIGEST_MD5, input.c_str(), input.size(),
 //                                   digest, sizeof(digest));

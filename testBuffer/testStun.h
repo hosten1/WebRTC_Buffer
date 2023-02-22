@@ -14,19 +14,19 @@
 
 #define  EXPECT_EQ(a,b) \
 if (a != b) {\
-    printf("");\
-   assert( true );\
+    printf("EXPECT_EQ 出错了！！！！");\
+   assert( a == b );\
 }
 
 #define  EXPECT_TRUE(a) \
 if (!a) {\
-    printf("");\
-    assert( true ); \
+    printf("EXPECT_TRUE 出错了！！！！");\
+    assert( a ); \
 }
 #define  EXPECT_FALSE(a) \
 if (a) {\
-    printf("");\
-    assert( true ); \
+    printf("EXPECT_FALSE 出错了！！！！");\
+    assert( !a ); \
 }
 #define ASSERT_EQ(a,b) assert( a==b )
 #define ASSERT_TRUE(a) assert( a )

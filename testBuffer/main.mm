@@ -54,7 +54,7 @@ void StringBuilder_Release() {
   sb.AppendFormat(" 这是一段中文测试 %d",342);
   const char* original_buffer = sb.str().c_str();
   std::string moved = sb.Release();
-       EXPECT_TRUE(sb.str().empty());
+  EXPECT_TRUE(sb.str().empty());
   EXPECT_EQ(str, moved);
   EXPECT_EQ(original_buffer, moved.c_str());
 }
@@ -489,9 +489,9 @@ void ByteBufferTest_TestReadWriteBuffer() {
 }
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        StringBuilder_Release();
+//        StringBuilder_Release();
 //        ByteBufferTest_TestReadWriteBuffer();
-//        rtc::ByteBufferTest_TestReadWriteBufferStunMsg();
+        rtc::ByteBufferTest_TestReadWriteBufferStunMsg();
         
         
         
