@@ -12,6 +12,8 @@
 		1B6F5EA7299F66A6005E8BC5 /* zero_memory.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5E9F299F66A6005E8BC5 /* zero_memory.cc */; };
 		1B6F5EA8299F66A7005E8BC5 /* byte_buffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5EA5299F66A6005E8BC5 /* byte_buffer.cc */; };
 		1B6F5EB0299F7228005E8BC5 /* bit_buffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5EAE299F7228005E8BC5 /* bit_buffer.cc */; };
+		1B772BE929A5A257000C2D51 /* testStun.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B772BE829A5A257000C2D51 /* testStun.cc */; };
+		1B772BEC29A5A44A000C2D51 /* socket_address.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B772BEA29A5A44A000C2D51 /* socket_address.cc */; };
 		1BD18A0429A4A58D0017C00A /* string_utils.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD189FC29A4A58D0017C00A /* string_utils.cc */; };
 		1BD18A0529A4A58D0017C00A /* string_builder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD189FF29A4A58D0017C00A /* string_builder.cc */; };
 		1BD18A0C29A4A6BC0017C00A /* string_to_number.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD18A0929A4A6BC0017C00A /* string_to_number.cc */; };
@@ -49,6 +51,10 @@
 		1B6F5EAD299F69FF005E8BC5 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		1B6F5EAE299F7228005E8BC5 /* bit_buffer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bit_buffer.cc; sourceTree = "<group>"; };
 		1B6F5EAF299F7228005E8BC5 /* bit_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_buffer.h; sourceTree = "<group>"; };
+		1B772BE729A5A257000C2D51 /* testStun.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testStun.h; sourceTree = "<group>"; };
+		1B772BE829A5A257000C2D51 /* testStun.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testStun.cc; sourceTree = "<group>"; };
+		1B772BEA29A5A44A000C2D51 /* socket_address.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_address.cc; sourceTree = "<group>"; };
+		1B772BEB29A5A44A000C2D51 /* socket_address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_address.h; sourceTree = "<group>"; };
 		1BD189F829A4A58D0017C00A /* string_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_utils.h; sourceTree = "<group>"; };
 		1BD189FB29A4A58D0017C00A /* string_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_builder.h; sourceTree = "<group>"; };
 		1BD189FC29A4A58D0017C00A /* string_utils.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_utils.cc; sourceTree = "<group>"; };
@@ -101,6 +107,8 @@
 				1BD6D05F29A46B0300CA6F6E /* checks */,
 				1B6F5E99299F66A6005E8BC5 /* buffer */,
 				1B6F5E92299F6667005E8BC5 /* main.mm */,
+				1B772BE729A5A257000C2D51 /* testStun.h */,
+				1B772BE829A5A257000C2D51 /* testStun.cc */,
 			);
 			path = testBuffer;
 			sourceTree = "<group>";
@@ -152,6 +160,8 @@
 		1BD18A1229A4B89E0017C00A /* socket */ = {
 			isa = PBXGroup;
 			children = (
+				1B772BEA29A5A44A000C2D51 /* socket_address.cc */,
+				1B772BEB29A5A44A000C2D51 /* socket_address.h */,
 				1BD18A1329A4B89E0017C00A /* ip_address.cc */,
 				1BD18A1429A4B89E0017C00A /* ip_address.h */,
 			);
@@ -234,7 +244,9 @@
 				1B6F5EB0299F7228005E8BC5 /* bit_buffer.cc in Sources */,
 				1BD18A0C29A4A6BC0017C00A /* string_to_number.cc in Sources */,
 				1BD18A0429A4A58D0017C00A /* string_utils.cc in Sources */,
+				1B772BE929A5A257000C2D51 /* testStun.cc in Sources */,
 				1B6F5EA8299F66A7005E8BC5 /* byte_buffer.cc in Sources */,
+				1B772BEC29A5A44A000C2D51 /* socket_address.cc in Sources */,
 				1BD18A0529A4A58D0017C00A /* string_builder.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
