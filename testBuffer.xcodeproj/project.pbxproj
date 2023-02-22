@@ -14,6 +14,11 @@
 		1B6F5EB0299F7228005E8BC5 /* bit_buffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5EAE299F7228005E8BC5 /* bit_buffer.cc */; };
 		1B772BE929A5A257000C2D51 /* testStun.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B772BE829A5A257000C2D51 /* testStun.cc */; };
 		1B772BEC29A5A44A000C2D51 /* socket_address.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B772BEA29A5A44A000C2D51 /* socket_address.cc */; };
+		1B772BEF29A5A832000C2D51 /* stun.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B772BED29A5A832000C2D51 /* stun.cc */; };
+		1B772C0029A5AD1B000C2D51 /* md5_one.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B772BF829A5AD1B000C2D51 /* md5_one.c */; };
+		1B772C0129A5AD1B000C2D51 /* md5_dgst.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B772BF929A5AD1B000C2D51 /* md5_dgst.c */; };
+		1B772C0329A5AD1B000C2D51 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B772BFE29A5AD1B000C2D51 /* sha1.c */; };
+		1B772C0729A5B56C000C2D51 /* hmac_sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B772C0529A5B525000C2D51 /* hmac_sha1.c */; };
 		1BD18A0429A4A58D0017C00A /* string_utils.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD189FC29A4A58D0017C00A /* string_utils.cc */; };
 		1BD18A0529A4A58D0017C00A /* string_builder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD189FF29A4A58D0017C00A /* string_builder.cc */; };
 		1BD18A0C29A4A6BC0017C00A /* string_to_number.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1BD18A0929A4A6BC0017C00A /* string_to_number.cc */; };
@@ -55,6 +60,17 @@
 		1B772BE829A5A257000C2D51 /* testStun.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testStun.cc; sourceTree = "<group>"; };
 		1B772BEA29A5A44A000C2D51 /* socket_address.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_address.cc; sourceTree = "<group>"; };
 		1B772BEB29A5A44A000C2D51 /* socket_address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_address.h; sourceTree = "<group>"; };
+		1B772BED29A5A832000C2D51 /* stun.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stun.cc; sourceTree = "<group>"; };
+		1B772BEE29A5A832000C2D51 /* stun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stun.h; sourceTree = "<group>"; };
+		1B772BF629A5AD1B000C2D51 /* md32_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md32_common.h; sourceTree = "<group>"; };
+		1B772BF729A5AD1B000C2D51 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		1B772BF829A5AD1B000C2D51 /* md5_one.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5_one.c; sourceTree = "<group>"; };
+		1B772BF929A5AD1B000C2D51 /* md5_dgst.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5_dgst.c; sourceTree = "<group>"; };
+		1B772BFA29A5AD1B000C2D51 /* md5_local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5_local.h; sourceTree = "<group>"; };
+		1B772BFD29A5AD1B000C2D51 /* sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha.h; sourceTree = "<group>"; };
+		1B772BFE29A5AD1B000C2D51 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
+		1B772C0529A5B525000C2D51 /* hmac_sha1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hmac_sha1.c; sourceTree = "<group>"; };
+		1B772C0629A5B525000C2D51 /* hmac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
 		1BD189F829A4A58D0017C00A /* string_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_utils.h; sourceTree = "<group>"; };
 		1BD189FB29A4A58D0017C00A /* string_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_builder.h; sourceTree = "<group>"; };
 		1BD189FC29A4A58D0017C00A /* string_utils.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_utils.cc; sourceTree = "<group>"; };
@@ -141,6 +157,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1B772BF029A5AD1B000C2D51 /* HMAC */ = {
+			isa = PBXGroup;
+			children = (
+				1B772C0429A5B525000C2D51 /* hmac */,
+				1B772BF429A5AD1B000C2D51 /* MD5 */,
+				1B772BFC29A5AD1B000C2D51 /* sha */,
+			);
+			path = HMAC;
+			sourceTree = "<group>";
+		};
+		1B772BF429A5AD1B000C2D51 /* MD5 */ = {
+			isa = PBXGroup;
+			children = (
+				1B772BF529A5AD1B000C2D51 /* include */,
+				1B772BF829A5AD1B000C2D51 /* md5_one.c */,
+				1B772BF929A5AD1B000C2D51 /* md5_dgst.c */,
+				1B772BFA29A5AD1B000C2D51 /* md5_local.h */,
+			);
+			path = MD5;
+			sourceTree = "<group>";
+		};
+		1B772BF529A5AD1B000C2D51 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				1B772BF629A5AD1B000C2D51 /* md32_common.h */,
+				1B772BF729A5AD1B000C2D51 /* md5.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		1B772BFC29A5AD1B000C2D51 /* sha */ = {
+			isa = PBXGroup;
+			children = (
+				1B772BFD29A5AD1B000C2D51 /* sha.h */,
+				1B772BFE29A5AD1B000C2D51 /* sha1.c */,
+			);
+			path = sha;
+			sourceTree = "<group>";
+		};
+		1B772C0429A5B525000C2D51 /* hmac */ = {
+			isa = PBXGroup;
+			children = (
+				1B772C0529A5B525000C2D51 /* hmac_sha1.c */,
+				1B772C0629A5B525000C2D51 /* hmac.h */,
+			);
+			path = hmac;
+			sourceTree = "<group>";
+		};
 		1BD189F729A4A58D0017C00A /* strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +224,9 @@
 		1BD18A1229A4B89E0017C00A /* socket */ = {
 			isa = PBXGroup;
 			children = (
+				1B772BF029A5AD1B000C2D51 /* HMAC */,
+				1B772BED29A5A832000C2D51 /* stun.cc */,
+				1B772BEE29A5A832000C2D51 /* stun.h */,
 				1B772BEA29A5A44A000C2D51 /* socket_address.cc */,
 				1B772BEB29A5A44A000C2D51 /* socket_address.h */,
 				1BD18A1329A4B89E0017C00A /* ip_address.cc */,
@@ -235,13 +302,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B772C0729A5B56C000C2D51 /* hmac_sha1.c in Sources */,
 				1BD6D06229A46B0300CA6F6E /* checks.cc in Sources */,
+				1B772C0029A5AD1B000C2D51 /* md5_one.c in Sources */,
 				1BD18A1529A4B89E0017C00A /* ip_address.cc in Sources */,
 				1B6F5E93299F6667005E8BC5 /* main.mm in Sources */,
 				1BD18A0D29A4A6BC0017C00A /* string_encode.cc in Sources */,
 				1B6F5EA6299F66A6005E8BC5 /* string_view.cc in Sources */,
 				1B6F5EA7299F66A6005E8BC5 /* zero_memory.cc in Sources */,
 				1B6F5EB0299F7228005E8BC5 /* bit_buffer.cc in Sources */,
+				1B772BEF29A5A832000C2D51 /* stun.cc in Sources */,
+				1B772C0129A5AD1B000C2D51 /* md5_dgst.c in Sources */,
+				1B772C0329A5AD1B000C2D51 /* sha1.c in Sources */,
 				1BD18A0C29A4A6BC0017C00A /* string_to_number.cc in Sources */,
 				1BD18A0429A4A58D0017C00A /* string_utils.cc in Sources */,
 				1B772BE929A5A257000C2D51 /* testStun.cc in Sources */,
