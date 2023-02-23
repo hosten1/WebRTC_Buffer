@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B35373A29A759D500B3C3FC /* sinc_resampler_neon.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35372F29A759D500B3C3FC /* sinc_resampler_neon.cc */; };
+		1B35373B29A759D500B3C3FC /* push_sinc_resampler.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35373029A759D500B3C3FC /* push_sinc_resampler.cc */; };
+		1B35373C29A759D500B3C3FC /* sinc_resampler_sse.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35373229A759D500B3C3FC /* sinc_resampler_sse.cc */; };
+		1B35373D29A759D500B3C3FC /* push_resampler.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35373629A759D500B3C3FC /* push_resampler.cc */; };
+		1B35373E29A759D500B3C3FC /* sinc_resampler.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35373829A759D500B3C3FC /* sinc_resampler.cc */; };
+		1B35374229A75BA000B3C3FC /* aligned_malloc.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35374029A75BA000B3C3FC /* aligned_malloc.cc */; };
+		1B35374529A75F3000B3C3FC /* audio_util.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35374429A75F3000B3C3FC /* audio_util.cc */; };
 		1B6F5E93299F6667005E8BC5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5E92299F6667005E8BC5 /* main.mm */; };
 		1B6F5EA6299F66A6005E8BC5 /* string_view.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5E9B299F66A6005E8BC5 /* string_view.cc */; };
 		1B6F5EA7299F66A6005E8BC5 /* zero_memory.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F5E9F299F66A6005E8BC5 /* zero_memory.cc */; };
@@ -40,6 +47,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B35372F29A759D500B3C3FC /* sinc_resampler_neon.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sinc_resampler_neon.cc; sourceTree = "<group>"; };
+		1B35373029A759D500B3C3FC /* push_sinc_resampler.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = push_sinc_resampler.cc; sourceTree = "<group>"; };
+		1B35373129A759D500B3C3FC /* sinc_resampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sinc_resampler.h; sourceTree = "<group>"; };
+		1B35373229A759D500B3C3FC /* sinc_resampler_sse.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sinc_resampler_sse.cc; sourceTree = "<group>"; };
+		1B35373429A759D500B3C3FC /* push_resampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = push_resampler.h; sourceTree = "<group>"; };
+		1B35373529A759D500B3C3FC /* push_sinc_resampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = push_sinc_resampler.h; sourceTree = "<group>"; };
+		1B35373629A759D500B3C3FC /* push_resampler.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = push_resampler.cc; sourceTree = "<group>"; };
+		1B35373829A759D500B3C3FC /* sinc_resampler.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sinc_resampler.cc; sourceTree = "<group>"; };
+		1B35374029A75BA000B3C3FC /* aligned_malloc.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aligned_malloc.cc; sourceTree = "<group>"; };
+		1B35374129A75BA000B3C3FC /* aligned_malloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aligned_malloc.h; sourceTree = "<group>"; };
+		1B35374329A75F3000B3C3FC /* audio_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_util.h; sourceTree = "<group>"; };
+		1B35374429A75F3000B3C3FC /* audio_util.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_util.cc; sourceTree = "<group>"; };
 		1B6F5E8F299F6667005E8BC5 /* testBuffer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testBuffer; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B6F5E92299F6667005E8BC5 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		1B6F5E9B299F66A6005E8BC5 /* string_view.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_view.cc; sourceTree = "<group>"; };
@@ -98,6 +117,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B35372E29A759D500B3C3FC /* resampler */ = {
+			isa = PBXGroup;
+			children = (
+				1B35374429A75F3000B3C3FC /* audio_util.cc */,
+				1B35374329A75F3000B3C3FC /* audio_util.h */,
+				1B35374029A75BA000B3C3FC /* aligned_malloc.cc */,
+				1B35374129A75BA000B3C3FC /* aligned_malloc.h */,
+				1B35373329A759D500B3C3FC /* include */,
+				1B35373629A759D500B3C3FC /* push_resampler.cc */,
+				1B35373029A759D500B3C3FC /* push_sinc_resampler.cc */,
+				1B35373529A759D500B3C3FC /* push_sinc_resampler.h */,
+				1B35372F29A759D500B3C3FC /* sinc_resampler_neon.cc */,
+				1B35373229A759D500B3C3FC /* sinc_resampler_sse.cc */,
+				1B35373829A759D500B3C3FC /* sinc_resampler.cc */,
+				1B35373129A759D500B3C3FC /* sinc_resampler.h */,
+			);
+			path = resampler;
+			sourceTree = "<group>";
+		};
+		1B35373329A759D500B3C3FC /* include */ = {
+			isa = PBXGroup;
+			children = (
+				1B35373429A759D500B3C3FC /* push_resampler.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		1B6F5E86299F6667005E8BC5 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +164,7 @@
 		1B6F5E91299F6667005E8BC5 /* testBuffer */ = {
 			isa = PBXGroup;
 			children = (
+				1B35372E29A759D500B3C3FC /* resampler */,
 				1BD18A1229A4B89E0017C00A /* socket */,
 				1BD189F729A4A58D0017C00A /* strings */,
 				1BD6D05F29A46B0300CA6F6E /* checks */,
@@ -302,14 +349,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B35373B29A759D500B3C3FC /* push_sinc_resampler.cc in Sources */,
+				1B35374229A75BA000B3C3FC /* aligned_malloc.cc in Sources */,
+				1B35373A29A759D500B3C3FC /* sinc_resampler_neon.cc in Sources */,
 				1B772C0729A5B56C000C2D51 /* hmac_sha1.c in Sources */,
 				1BD6D06229A46B0300CA6F6E /* checks.cc in Sources */,
+				1B35373C29A759D500B3C3FC /* sinc_resampler_sse.cc in Sources */,
 				1B772C0029A5AD1B000C2D51 /* md5_one.c in Sources */,
 				1BD18A1529A4B89E0017C00A /* ip_address.cc in Sources */,
 				1B6F5E93299F6667005E8BC5 /* main.mm in Sources */,
 				1BD18A0D29A4A6BC0017C00A /* string_encode.cc in Sources */,
 				1B6F5EA6299F66A6005E8BC5 /* string_view.cc in Sources */,
 				1B6F5EA7299F66A6005E8BC5 /* zero_memory.cc in Sources */,
+				1B35373E29A759D500B3C3FC /* sinc_resampler.cc in Sources */,
 				1B6F5EB0299F7228005E8BC5 /* bit_buffer.cc in Sources */,
 				1B772BEF29A5A832000C2D51 /* stun.cc in Sources */,
 				1B772C0129A5AD1B000C2D51 /* md5_dgst.c in Sources */,
@@ -318,6 +370,8 @@
 				1BD18A0429A4A58D0017C00A /* string_utils.cc in Sources */,
 				1B772BE929A5A257000C2D51 /* testStun.cc in Sources */,
 				1B6F5EA8299F66A7005E8BC5 /* byte_buffer.cc in Sources */,
+				1B35374529A75F3000B3C3FC /* audio_util.cc in Sources */,
+				1B35373D29A759D500B3C3FC /* push_resampler.cc in Sources */,
 				1B772BEC29A5A44A000C2D51 /* socket_address.cc in Sources */,
 				1BD18A0529A4A58D0017C00A /* string_builder.cc in Sources */,
 			);

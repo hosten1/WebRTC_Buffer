@@ -1084,7 +1084,7 @@ void test_sendBindMsg(){
     request.AddMessageIntegrity(key);
     const StunByteStringAttribute* mi_attr =
     request.GetByteString(STUN_ATTR_MESSAGE_INTEGRITY);
-      printfX("StunTest_AddMessageIntegrity MD5 ",mi_attr->bytes(), mi_attr->length());
+    printfX("StunTest_AddMessageIntegrity MD5 ",mi_attr->bytes(), mi_attr->length());
     
     request.AddAttribute(std::make_unique<StunByteStringAttribute>(STUN_ATTR_USERNAME, "username"));
     request.AddAttribute(std::make_unique<StunUInt32Attribute>(STUN_ATTR_RETRANSMIT_COUNT, 1));
