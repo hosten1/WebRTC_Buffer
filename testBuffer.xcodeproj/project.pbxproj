@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B23081629AC4AA90025EADC /* platform_file.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B23080E29AC4AA90025EADC /* platform_file.cc */; };
+		1B23081729AC4AA90025EADC /* wav_header.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B23080F29AC4AA90025EADC /* wav_header.cc */; };
+		1B23081829AC4AA90025EADC /* wav_file.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B23081129AC4AA90025EADC /* wav_file.cc */; };
+		1B23081F29AC4B0E0025EADC /* audio_level.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B23081C29AC4B0E0025EADC /* audio_level.cc */; };
 		1B35373A29A759D500B3C3FC /* sinc_resampler_neon.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35372F29A759D500B3C3FC /* sinc_resampler_neon.cc */; };
 		1B35373B29A759D500B3C3FC /* push_sinc_resampler.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35373029A759D500B3C3FC /* push_sinc_resampler.cc */; };
 		1B35373C29A759D500B3C3FC /* sinc_resampler_sse.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1B35373229A759D500B3C3FC /* sinc_resampler_sse.cc */; };
@@ -47,6 +51,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B23080829AC4AA90025EADC /* wav_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wav_file.h; sourceTree = "<group>"; };
+		1B23080E29AC4AA90025EADC /* platform_file.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform_file.cc; sourceTree = "<group>"; };
+		1B23080F29AC4AA90025EADC /* wav_header.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wav_header.cc; sourceTree = "<group>"; };
+		1B23081029AC4AA90025EADC /* sanitizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitizer.h; sourceTree = "<group>"; };
+		1B23081129AC4AA90025EADC /* wav_file.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wav_file.cc; sourceTree = "<group>"; };
+		1B23081229AC4AA90025EADC /* platform_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform_file.h; sourceTree = "<group>"; };
+		1B23081329AC4AA90025EADC /* wav_header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wav_header.h; sourceTree = "<group>"; };
+		1B23081429AC4AA90025EADC /* arch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arch.h; sourceTree = "<group>"; };
+		1B23081A29AC4B0E0025EADC /* audio_level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_level.h; sourceTree = "<group>"; };
+		1B23081C29AC4B0E0025EADC /* audio_level.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_level.cc; sourceTree = "<group>"; };
 		1B35372F29A759D500B3C3FC /* sinc_resampler_neon.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sinc_resampler_neon.cc; sourceTree = "<group>"; };
 		1B35373029A759D500B3C3FC /* push_sinc_resampler.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = push_sinc_resampler.cc; sourceTree = "<group>"; };
 		1B35373129A759D500B3C3FC /* sinc_resampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sinc_resampler.h; sourceTree = "<group>"; };
@@ -117,6 +131,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B23080729AC4AA80025EADC /* writeWav */ = {
+			isa = PBXGroup;
+			children = (
+				1B23081429AC4AA90025EADC /* arch.h */,
+				1B23080E29AC4AA90025EADC /* platform_file.cc */,
+				1B23081229AC4AA90025EADC /* platform_file.h */,
+				1B23081029AC4AA90025EADC /* sanitizer.h */,
+				1B23081129AC4AA90025EADC /* wav_file.cc */,
+				1B23080829AC4AA90025EADC /* wav_file.h */,
+				1B23080F29AC4AA90025EADC /* wav_header.cc */,
+				1B23081329AC4AA90025EADC /* wav_header.h */,
+			);
+			path = writeWav;
+			sourceTree = "<group>";
+		};
+		1B23081929AC4B0E0025EADC /* audioLevel */ = {
+			isa = PBXGroup;
+			children = (
+				1B23081C29AC4B0E0025EADC /* audio_level.cc */,
+				1B23081A29AC4B0E0025EADC /* audio_level.h */,
+			);
+			path = audioLevel;
+			sourceTree = "<group>";
+		};
 		1B35372E29A759D500B3C3FC /* resampler */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +202,8 @@
 		1B6F5E91299F6667005E8BC5 /* testBuffer */ = {
 			isa = PBXGroup;
 			children = (
+				1B23081929AC4B0E0025EADC /* audioLevel */,
+				1B23080729AC4AA80025EADC /* writeWav */,
 				1B35372E29A759D500B3C3FC /* resampler */,
 				1BD18A1229A4B89E0017C00A /* socket */,
 				1BD189F729A4A58D0017C00A /* strings */,
@@ -352,6 +392,7 @@
 				1B35373B29A759D500B3C3FC /* push_sinc_resampler.cc in Sources */,
 				1B35374229A75BA000B3C3FC /* aligned_malloc.cc in Sources */,
 				1B35373A29A759D500B3C3FC /* sinc_resampler_neon.cc in Sources */,
+				1B23081729AC4AA90025EADC /* wav_header.cc in Sources */,
 				1B772C0729A5B56C000C2D51 /* hmac_sha1.c in Sources */,
 				1BD6D06229A46B0300CA6F6E /* checks.cc in Sources */,
 				1B35373C29A759D500B3C3FC /* sinc_resampler_sse.cc in Sources */,
@@ -367,7 +408,10 @@
 				1B772C0129A5AD1B000C2D51 /* md5_dgst.c in Sources */,
 				1B772C0329A5AD1B000C2D51 /* sha1.c in Sources */,
 				1BD18A0C29A4A6BC0017C00A /* string_to_number.cc in Sources */,
+				1B23081F29AC4B0E0025EADC /* audio_level.cc in Sources */,
+				1B23081629AC4AA90025EADC /* platform_file.cc in Sources */,
 				1BD18A0429A4A58D0017C00A /* string_utils.cc in Sources */,
+				1B23081829AC4AA90025EADC /* wav_file.cc in Sources */,
 				1B772BE929A5A257000C2D51 /* testStun.cc in Sources */,
 				1B6F5EA8299F66A7005E8BC5 /* byte_buffer.cc in Sources */,
 				1B35374529A75F3000B3C3FC /* audio_util.cc in Sources */,
