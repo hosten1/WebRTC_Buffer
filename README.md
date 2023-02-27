@@ -1,5 +1,12 @@
 # WebRTC_Buffer
 webrtc bitBuffer ByteBuffer
+这个库 主要是提取WebRTC的一些工具类，每一个文件下的基本都能够独立使用；
+因为是WebRTC的代码，其中有些gn中定义的宏，需要在各个平台编译的时候加入，不然会有编译错误；
+主要的宏有
+```bash
+#defined(WEBRTC_WIN)
+#defined(WEBRTC_POSIX)
+```
 # 按照以下方式可以构建一个stun的bind消息
 ```c++
     StunMessage request;
