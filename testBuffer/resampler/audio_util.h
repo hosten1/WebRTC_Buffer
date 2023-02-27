@@ -17,7 +17,7 @@
 #include <cstring>
 #include <limits>
 
-#include "checks.h"
+//#include "checks.h"
 
 namespace webrtc {
 
@@ -80,7 +80,7 @@ inline float DbfsToFloatS16(float v) {
 }
 
 inline float FloatS16ToDbfs(float v) {
-  RTC_DCHECK_GE(v, 0);
+//  RTC_DCHECK_GE(v, 0);
 
   // kMinDbfs is equal to -20.0 * log10(-limits_int16::min())
   static constexpr float kMinDbfs = -90.30899869919436f;
@@ -180,8 +180,8 @@ void DownmixInterleavedToMonoImpl(const T* interleaved,
                                   size_t num_frames,
                                   int num_channels,
                                   T* deinterleaved) {
-  RTC_DCHECK_GT(num_channels, 0);
-  RTC_DCHECK_GT(num_frames, 0);
+//  RTC_DCHECK_GT(num_channels, 0);
+//  RTC_DCHECK_GT(num_frames, 0);
 
   const T* const end = interleaved + num_frames * num_channels;
 

@@ -92,8 +92,8 @@
 #include <string.h>
 #include <limits>
 
-#include "checks.h"
-//#include "rtc_base/system/arch.h"
+//#include "checks.h"
+#include "arch.h"
 //#include "system_wrappers/include/cpu_features_wrapper.h"  // kSSE2, WebRtc_G...
 
 namespace webrtc {
@@ -167,11 +167,11 @@ SincResampler::SincResampler(double io_sample_rate_ratio,
       r2_(input_buffer_.get() + kKernelSize / 2) {
 #if defined(WEBRTC_ARCH_X86_FAMILY) && !defined(__SSE2__)
   InitializeCPUSpecificFeatures();
-  RTC_DCHECK(convolve_proc_);
+//  RTC_DCHECK(convolve_proc_);
 #endif
-  RTC_DCHECK_GT(request_frames_, 0);
+//  RTC_DCHECK_GT(request_frames_, 0);
   Flush();
-  RTC_DCHECK_GT(block_size_, kKernelSize);
+//  RTC_DCHECK_GT(block_size_, kKernelSize);
 
   memset(kernel_storage_.get(), 0,
          sizeof(*kernel_storage_.get()) * kKernelStorageSize);
@@ -194,11 +194,11 @@ void SincResampler::UpdateRegions(bool second_load) {
   block_size_ = r4_ - r2_;
 
   // r1_ at the beginning of the buffer.
-  RTC_DCHECK_EQ(r1_, input_buffer_.get());
+//  RTC_DCHECK_EQ(r1_, input_buffer_.get());
   // r1_ left of r2_, r4_ left of r3_ and size correct.
-  RTC_DCHECK_EQ(r2_ - r1_, r4_ - r3_);
+//  RTC_DCHECK_EQ(r2_ - r1_, r4_ - r3_);
   // r2_ left of r3.
-  RTC_DCHECK_LT(r2_, r3_);
+//  RTC_DCHECK_LT(r2_, r3_);
 }
 
 void SincResampler::InitializeKernel() {
@@ -285,7 +285,7 @@ void SincResampler::Resample(size_t frames, float* destination) {
     for (int i = static_cast<int>(
              ceil((block_size_ - virtual_source_idx_) / current_io_ratio));
          i > 0; --i) {
-      RTC_DCHECK_LT(virtual_source_idx_, block_size_);
+//      RTC_DCHECK_LT(virtual_source_idx_, block_size_);
 
       // |virtual_source_idx_| lies in between two kernel offsets so figure out
       // what they are.
@@ -303,8 +303,8 @@ void SincResampler::Resample(size_t frames, float* destination) {
 
       // Ensure |k1|, |k2| are 16-byte aligned for SIMD usage.  Should always be
       // true so long as kKernelSize is a multiple of 16.
-      RTC_DCHECK_EQ(0, reinterpret_cast<uintptr_t>(k1) % 16);
-      RTC_DCHECK_EQ(0, reinterpret_cast<uintptr_t>(k2) % 16);
+//      RTC_DCHECK_EQ(0, reinterpret_cast<uintptr_t>(k1) % 16);
+//      RTC_DCHECK_EQ(0, reinterpret_cast<uintptr_t>(k2) % 16);
 
       // Initialize input pointer based on quantized |virtual_source_idx_|.
       const float* const input_ptr = r1_ + source_idx;

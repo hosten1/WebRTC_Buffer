@@ -18,7 +18,7 @@
 //#include "common_audio/include/audio_util.h"
 #include "audio_util.h"
 #include "push_sinc_resampler.h"
-#include "checks.h"
+//#include "checks.h"
 
 namespace webrtc {
 namespace {
@@ -34,9 +34,9 @@ void CheckValidInitParams(int src_sample_rate_hz,
 // The below checks are temporarily disabled on WEBRTC_WIN due to problems
 // with clang debug builds.
 #if !defined(WEBRTC_WIN) && defined(__clang__)
-  RTC_DCHECK_GT(src_sample_rate_hz, 0);
-  RTC_DCHECK_GT(dst_sample_rate_hz, 0);
-  RTC_DCHECK_GT(num_channels, 0);
+//  RTC_DCHECK_GT(src_sample_rate_hz, 0);
+//  RTC_DCHECK_GT(dst_sample_rate_hz, 0);
+//  RTC_DCHECK_GT(num_channels, 0);
 #endif
 }
 
@@ -52,8 +52,8 @@ void CheckExpectedBufferSizes(size_t src_length,
 #if !defined(WEBRTC_WIN) && defined(__clang__)
   const size_t src_size_10ms = src_sample_rate * num_channels / 100;
   const size_t dst_size_10ms = dst_sample_rate * num_channels / 100;
-  RTC_DCHECK_EQ(src_length, src_size_10ms);
-  RTC_DCHECK_GE(dst_capacity, dst_size_10ms);
+//  RTC_DCHECK_EQ(src_length, src_size_10ms);
+//  RTC_DCHECK_GE(dst_capacity, dst_size_10ms);
 #endif
 }
 }  // namespace
