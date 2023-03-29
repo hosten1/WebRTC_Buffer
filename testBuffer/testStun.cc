@@ -1085,11 +1085,14 @@ void test_sendBindMsg(){
     std::string key;
     // 计算MD5, 也就是HMAC的key
     ComputeStunCredentialHash("lym","example.org","123456", &key);
-  
     
     request.AddAttribute(std::make_unique<StunByteStringAttribute>(STUN_ATTR_USERNAME, "username"));
     request.AddAttribute(std::make_unique<StunUInt32Attribute>(STUN_ATTR_RETRANSMIT_COUNT, 1));
     request.AddAttribute(std::make_unique<StunByteStringAttribute>(STUN_ATTR_SOFTWARE, "{\"name\":\"lym\",\"age\":10,\"body\":\"haha\"}"));
+    rtc::SocketAddress addr;
+    addr.SetIP("192.168.141.10");
+    addr.SetPort(10480);
+    request.AddAttribute(std::make_unique<StunXorAddressAttribute>(STUN_ATTR_XOR_MAPPED_ADDRESS,addr));
     
     // 使用 key计算 HMAC 并加入到buffer中；
     request.AddMessageIntegrity(key);
@@ -1112,7 +1115,13 @@ void test_sendBindMsg(){
    // 获取解析后的消息
     const StunByteStringAttribute *soft_attr = msg.GetByteString(STUN_ATTR_SOFTWARE);
     std::string soft_attrStr = mi_attr->GetString();
-    printf("test_sendBindMsg soft_attr %s %zu",soft_attrStr.c_str(), mi_attr->length());
+    printf("test_sendBindMsg soft_attr %s %zu \n",soft_attrStr.c_str(), mi_attr->length());
+    
+    const StunAddressAttribute *xor_attr_x = msg.GetAddress(STUN_ATTR_XOR_MAPPED_ADDRESS);
+    const rtc::SocketAddress& xor_attrStr = xor_attr_x->GetAddress();
+    uint16_t port_x = xor_attrStr.port();
+    const IPAddress& ipAddr = xor_attrStr.ipaddr();
+    printf("test_sendBindMsg xor_attrStr %s  %s:%d\n",xor_attrStr.ToString().c_str(),ipAddr.ToString().c_str(),port_x);
     
 }
 } // namespace end
